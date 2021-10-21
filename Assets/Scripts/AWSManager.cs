@@ -73,33 +73,33 @@ public class AWSManager : MonoBehaviour
                 Debug.Log("Exception occured during uploading: " + responseObj.Exception);
             }
         });
-
-        DownloadBundle();
-    }
-
-    public void DownloadBundle()
-    {
-        //string bucketName = "assetsbundlearhorse";
-        //string fileName = "horse";
-
-        //S3Client.GetObjectAsync(bucketName, fileName, (responseObj) =>
-        //{
-        //    if(responseObj.Exception == null)
-        //    {
-        //        string data = null;
-        //        using(StreamReader reader = new StreamReader(responseObj.Response.ResponseStream))
-        //        {
-        //            data = reader.ReadToEnd();
-        //            Debug.Log("Data: " + data);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Exception occured: " + responseObj.Exception);
-        //    }
-        //});
         StartCoroutine(BundleRoutine());
+        //DownloadBundle();
     }
+
+    //public void DownloadBundle()
+    //{
+    //    //string bucketName = "assetsbundlearhorse";
+    //    //string fileName = "horse";
+
+    //    //S3Client.GetObjectAsync(bucketName, fileName, (responseObj) =>
+    //    //{
+    //    //    if(responseObj.Exception == null)
+    //    //    {
+    //    //        string data = null;
+    //    //        using(StreamReader reader = new StreamReader(responseObj.Response.ResponseStream))
+    //    //        {
+    //    //            data = reader.ReadToEnd();
+    //    //            Debug.Log("Data: " + data);
+    //    //        }
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        Debug.Log("Exception occured: " + responseObj.Exception);
+    //    //    }
+    //    //});
+    //    StartCoroutine(BundleRoutine());
+    //}
 
     IEnumerator BundleRoutine()
     {
@@ -110,6 +110,7 @@ public class AWSManager : MonoBehaviour
         Debug.Log("Get assets: " + request);
 
         AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
+        Debug.Log("Get assets: " + bundle.ToString());
         GameObject horse = bundle.LoadAsset<GameObject>("horse");
         horse = Instantiate(horse);
 
